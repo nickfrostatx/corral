@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %}Corral{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:100">
+    <style>
+      html {
+        text-align: center;
+      }
+      h1 {
+        margin: 150px 0 20px;
+        font-family: 'Roboto', sans-serif;
+        font-size: 100px;
+        font-weight: 100;
+      }
+      .success {
+        color: #4CAF50;
+      }
+      .error {
+        color: #F44336;
+      }
+      input {
+        padding: 10px;
+        border: 1px solid #555;
+        font-size: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    {%- block body %}{% endblock %}
+  </body>
+</html>

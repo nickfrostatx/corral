@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block body %}
+    <h1>Login</h1>
+    <input id="password" type="password" placeholder="Password" autofocus />
+    <script>
+      window.addEventListener('load', function() {
+        var input = document.getElementById('password');
+
+        input.addEventListener('keypress', function(e) {
+          if (e.keyCode == 13) {
+            document.cookie = 'key=' + encodeURIComponent(input.value);
+            window.location = window.location;
+          };
+        });
+      });
+    </script>
+{%- endblock %}

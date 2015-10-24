@@ -1,0 +1,16 @@
+DEBUG = False
+AUTH_KEY = 'secretkey'
+SITES = {
+    'site1': {
+        'origin': 'https://www.site1.com'
+        'filename': '%d.jpg',
+        'path': '/home/nick/downloads/site1/',
+        'url': 'https://www.site1.com/download/%d.jpg',
+    },
+    'site2': {
+        'origin': 'https://site2.org'
+        'filename': '%d.mp4',
+        'path': '/home/nick/downloads/site2/',
+        'url': 'https://cdn.site1.org/%d.mp4',
+    },
+}
