@@ -15,7 +15,7 @@ private.before_request(enforce_auth)
 @handle_errors(private)
 def json_error(e):
     """Return an error response like {"msg":"Method not allowed"}."""
-    return jsonify({'msg': e.description})
+    return jsonify({'msg': e.name}), e.code
 
 
 @private.route('/download/<site_id>/<int:param>', methods=['POST'])

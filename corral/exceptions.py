@@ -5,8 +5,8 @@ from werkzeug.exceptions import BadRequest, Forbidden
 
 
 class SiteException(BadRequest):
-    description = 'Received a non-200 status code.'
+    name = 'Received a non-200 status code'
 
 
 class NotAuthed(Forbidden):
-    description = 'You must be authenticated.'
+    name = 'You must be authenticated'
