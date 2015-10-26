@@ -3,14 +3,14 @@ AUTH_KEY = 'secretkey'
 SITES = {
     'site1': {
         'origin': 'https://www.site1.com'
-        'filename': '{}.jpg',
+        'filename': '{0}.jpg',
         'path': '/home/nick/downloads/site1/',
-        'url': 'https://www.site1.com/download/{}.jpg',
+        'url': 'https://www.site1.com/download/{0}.jpg',
     },
     'site2': {
         'origin': 'https://site2.org'
-        'filename': '{}.mp4',
+        'filename': '{0}.mp4',
         'path': '/home/nick/downloads/site2/',
-        'url': 'https://cdn.site1.org/{}.mp4',
+        'url': 'https://cdn.site1.org/{0}.mp4',
     },
 }
