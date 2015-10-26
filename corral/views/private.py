@@ -14,7 +14,7 @@ private.before_request(enforce_auth)
 
 @handle_errors(private)
 def json_error(e):
-    """Return an error response like {"msg":"Method not allowed"}."""
+    """Return an error response like {"msg":"Not Found"}."""
     return jsonify({'msg': e.name}), e.code
 
 
