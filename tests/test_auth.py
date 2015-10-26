@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Test public routes."""
+"""Test authentication functions."""
 
 from flask import Flask, g, jsonify
 import corral.util
