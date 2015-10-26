@@ -9,6 +9,7 @@ def test_auth():
     app = create_app()
     app.config['SITES'] = {}
     app.config['AUTH_KEY'] = 'secret'
+    app.config['DEBUG'] = True
 
     with app.test_client() as c:
         rv = c.post('/download/site1/123')
@@ -38,6 +39,7 @@ def test_cors(httpbin, tmpdir):
         },
     }
     app.config['AUTH_KEY'] = 'secret'
+    app.config['DEBUG'] = True
 
     with app.test_client() as c:
         rv = c.post('/download/site1/123', headers={'Cookie': 'key=secret'})
@@ -65,6 +67,7 @@ def test_download(httpbin, tmpdir):
         },
     }
     app.config['AUTH_KEY'] = 'secret'
+    app.config['DEBUG'] = True
 
     with app.test_client() as c:
         rv = c.post('/download/site1/123', headers={'Cookie': 'key=secret'})
