@@ -32,9 +32,9 @@ def test_cors(httpbin, tmpdir):
     app.config['SITES'] = {
         'site1': {
             'origin': httpbin.url,
-            'filename': '%d.jpg',
+            'filename': '{}.jpg',
             'path': str(tmpdir),
-            'url': httpbin.url + '/status/%d',
+            'url': httpbin.url + '/status/418',
         },
     }
     app.config['AUTH_KEY'] = 'secret'
@@ -43,12 +43,31 @@ def test_cors(httpbin, tmpdir):
         rv = c.post('/download/site1/123', headers={'Cookie': 'key=secret'})
         assert 'Access-Control-Allow-Origin' not in rv.headers
 
-        rv = c.post('/download/site1/418', headers={'Origin': httpbin.url,
+        rv = c.post('/download/site1/123', headers={'Origin': httpbin.url,
                                                     'Cookie': 'key=secret'})
         assert rv.headers.get('Access-Control-Allow-Origin') == httpbin.url
         assert rv.status_code == 400
 
-        rv = c.post('/download/site1/418', headers={'Origin': 'http://goo.gl',
+        rv = c.post('/download/site1/123', headers={'Origin': 'http://goo.gl',
                                                     'Cookie': 'key=secret'})
         assert rv.headers.get('Access-Control-Allow-Origin') == httpbin.url
         assert rv.status_code == 400
+
+
+def test_download(httpbin, tmpdir):
+    app = create_app()
+    app.config['SITES'] = {
+        'site1': {
+            'origin': httpbin.url,
+            'filename': '{}.jpg',
+            'path': str(tmpdir),
+            'url': httpbin.url + '/bytes/1024',
+        },
+    }
+    app.config['AUTH_KEY'] = 'secret'
+
+    with app.test_client() as c:
+        rv = c.post('/download/site1/123', headers={'Cookie': 'key=secret'})
+        assert tmpdir.join('123.jpg').size() == 1024
+        assert rv.data == b'{}'
+        assert rv.status_code == 200
