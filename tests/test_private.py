@@ -33,7 +33,7 @@ def test_cors(httpbin, tmpdir):
     app.config['SITES'] = {
         'site1': {
             'origin': httpbin.url,
-            'filename': '{}.jpg',
+            'filename': '{0}.jpg',
             'path': str(tmpdir),
             'url': httpbin.url + '/status/418',
         },
@@ -61,7 +61,7 @@ def test_download(httpbin, tmpdir):
     app.config['SITES'] = {
         'site1': {
             'origin': httpbin.url,
-            'filename': '{}.jpg',
+            'filename': '{0}.jpg',
             'path': str(tmpdir),
             'url': httpbin.url + '/bytes/1024',
         },
