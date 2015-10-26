@@ -66,3 +66,20 @@ def test_html_handler():
     assert b'<title>Corral - Internal Server Error</title>' in rv.data
     assert b'Error 500' in rv.data
     assert rv.status_code == 500
+
+
+def test_not_500():
+    app = Flask(__name__)
+    client = app.test_client()
+
+    @app.route('/internal')
+    def divide_by_zero():
+        1/0
+
+    @corral.error.handle_errors(app)
+    def handle(e):
+        return e.name + '\n', e.code
+
+    rv = client.get('/internal')
+    assert b'<!DOCTYPE HTML PUBLIC' in rv.data
+    assert rv.status_code == 500
