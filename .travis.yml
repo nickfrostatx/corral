@@ -1,16 +1,20 @@
 language: python
-
 python:
-  - '3.5'
-
+- '3.5'
 env:
-  - TOXENV=py35,coveralls
-  - TOXENV=py34,coveralls
-  - TOXENV=py33,coveralls
-  - TOXENV=py27,coveralls
-  - TOXENV=py26,coveralls
-  - TOXENV=pypy,coveralls
-
+- TOXENV=py35,coveralls
+- TOXENV=py34,coveralls
+- TOXENV=py33,coveralls
+- TOXENV=py27,coveralls
+- TOXENV=py26,coveralls
+- TOXENV=pypy,coveralls
 install: pip install tox
-
 script: tox
+deploy:
+  provider: pypi
+  user: nickfrostatx
+  password:
+    secure: pxckojHmFmMAbSfgEfpwjnwY78KM8ye0ZoNqrDUvB9XR6aYlK4vuwBIghYknh27nog2tLCYLaxDVfD4LWzSUlwntw2ZI9ETs42YwioPlgFuEg7nGrl0n7napFYb09biQRB2pFYoJDSnEhv8H2nnUqm2FJ1/pXxRaZZRji4exTp/IrbYCZ92DLz1vDesLF5HcT1d9z9/pJNNYiRKwSBqatAz7tvoFN5nUyFs9n3Iud/Z9Kue6gcUusFNAUE3+OFBGXMT/QL96MAMNekUCMqYE3bjmTlmKQvV36S+rTnBaXDD1f9Yf+5sNF4Ouw9L5W1DVDuPdfTFfxblZA3NLLs/+/beMV8IVysbNsIxlZFssU6ENPz6bFKI4Zd0MnhrCefNjRTERIeWugoOu1gxxC4D12EU5KllopGfRVP1XzeRoDXRXmf94llTI2i/t/0DGrkZvWJcCYU50rCCMNB0b+NwbzIdX+d0/fHktAZNd+CiBVdvjUdD7NTFEPnd4P7NBv+635ymTZloeWJ7clvcgD9z/NI0XwGbKTO4tEYI9oEdxJCAvg5n/sBOsGbc4Xg2wMV2wtAdvxik50RU1yQNXof2lMydN2w7hqd2c5TiRh5SFxkNGhnhEiitEeuY7tCsrkCMChvo5cmOtrJoR9COtqVcnaaiSa0Y0Q+Yur5+fcNMs8/I=
+  distributions: sdist bdist_wheel
+  on:
+    tags: true
