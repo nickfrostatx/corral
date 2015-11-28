@@ -8,4 +8,4 @@ API for downloading files.
 
 __author__ = 'Nick Frost'
 __email__ = 'nickfrostatx@gmail.com'
-__version__ = '1.3.2'
+__version__ = '1.3.3'
